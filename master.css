@@ -1,0 +1,77 @@
+/*master css file*/
+
+/*color scheme variables*/
+:root {
+  --white: #fcfdff;
+  --lightblue: #5DBCD2;
+  --darkblue: linear-gradient(180deg, #272f7c, #515899);
+  --peach: #ffaca3;
+  --gray: #849a9c;
+  --darkgray: #394040;
+}
+
+/*zero out*/
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/*font sizing*/
+html {
+  font-size: 62.5%;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+/*border box*/
+*, ::before, ::after {
+  box-sizing: inherit;
+}
+
+/*core styles*/
+body {
+  font-family: Arial, Verdana, sans-serif;
+  font-size: 1.6rem;
+  color: var(--white);
+}
+h1, h2, h3, h4 {
+  font-family: inherit;
+}
+h1 {
+  font-size: 5rem;
+}
+h2 {
+  font-size: 3rem;
+}
+h3 {
+  font-size: 2.5rem;
+}
+h4 {
+  font-size: 2rem;
+}
+img {
+  display: block;
+  width: 100%;
+}
+a {
+  text-decoration: none;
+  color: var(--white);
+}
+ul {
+  list-style: none;
+}
+
+/*navigation styles*/
+
+
+/*project section*/
+
+/*contact section*/
+
+/* footer styles*/
+
+@media only screen and (max-width: 414px) {
+}
+@media only screen and (max-width: 360px) {
+
+}
