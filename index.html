@@ -4,9 +4,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="master.css">
-  <title>Car Cost Calculator</title>
+  <title>Home Cost Calculator</title>
 </head>
 <body>
+  <header>
+    <h2>Home Cost Calculator</h2>
+  </header>
   <nav>
     <h4>
       <ul class="nav-items">
@@ -16,11 +19,55 @@
       </ul>
     </h4>
   </nav>
-  <header>
-
-  </header>
   <main>
     <div id="form-container">
+        <form name ="calculation" id="calculation_form" action="#">
+          <div id="mortgage_rent">
+            <div class="form_row">
+              <label class="" id="label_one" for="home_select">Rent or buy:</label>
+              <select class="input_field" id="home_select" name="calculation" onchange="mortgageOrRent(this.value)">
+                <option value="" disabled selected>---select---</option>
+                <option value="rent">Rent</option>
+                <option value="buy">Buy</option>
+              </select>
+            </div>
+            <div id="mortgage">
+              <div class="form_row">
+                <label class="label_text" id="label_two" for="mortgage_years">Term (years):</label>
+                <input class="input_field" type="number" pattern="" name="calculation" id="mortgage_years" />
+              </div>
+              <div class="form_row">
+                <label class="label_text" id="label_three" for="mortgage_rate">Interest Rate:</label>
+                <input class="input_field" type="number" pattern="" name="calculation" id="mortgage_rate" />
+              </div>
+              <div class="form_row">
+                <label class="label_text" id="label_four" for="mortgage_loan">Loan Amount:</label>
+                <input class="input_field" type="number" pattern="" name="calculation" id="mortgage_loan" />
+              </div>
+            </div>
+            <div id="rent">
+              <div class="form_row">
+                <label class="label_text" id="label_five" for="rent_pm">Rent (per month):</label>
+                <input class="input_field" type="number" pattern="" name="calculation" id="rent_pm" />
+              </div>
+            </div>
+          </div>
+          <div id="counciltax">
+            <div class="form_row">
+              <label class="label_text" id="label_six" for="counciltax_fig counciltax_select">Council Tax:</label>
+              <div id="counciltax_inputs">
+                <input class="input_field_ct_fig" type="number" pattern="" name="calculation" id="counciltax_fig">
+                <select class="input_field_ct_mtyr" id="counciltax_select" name="calculation">
+                  <option value="month">Month</option>
+                  <option value="year">Year</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="submit_button">
+            <input type="button" name="calculation" value="Submit" onclick="getFinalCalc();" />
+          </div>
+      </form>
     </div>
 
   </main>
@@ -28,4 +75,5 @@
 
   </footer>
 </body>
+<script type="text/javascript" src="main.js"></script>
 </html>
