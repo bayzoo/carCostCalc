@@ -14,24 +14,29 @@ function getFinalCalc() {
     const olForm = document.getElementById("calculation_form");
     let calcTotal = 0;
     const homeChoice = olForm.elements["home_select"].value;
-
+    
     if (homeChoice == "buy") {
-        let mortgageYears = parseFloat(olForm.elements["mortgage_years"].value);
-        let mortgageRate = (parseFloat(olForm.elements["mortgage_rate"].value) / 100) / 12;
-        let mortgageLoan = parseFloat(olForm.elements["mortgage_loan"].value);
+        let mortgageYears = olForm.elements["mortgage_years"].valueAsNumber;
+        let mortgageRate = olForm.elements["mortgage_rate"].valueAsNumber / 100 / 12;
+        let mortgageLoan = olForm.elements["mortgage_loan"].valueAsNumber;
         let mortgageMonths = mortgageYears * 12;
 
         calcTotal += getMortgageTotal(mortgageMonths, mortgageRate, mortgageLoan);
 
     } else if (homeChoice == "rent") {
-        calcTotal += parseFloat(olForm.elements["rent_pm"].value);
+        calcTotal += olForm.elements["rent_pm"].valueAsNumber;
     }
     const counciltaxSelect = olForm.elements["counciltax_select"].value;
-    const counciltaxFig = parseFloat(olForm.elements["counciltax_fig"].value);
+    const counciltaxFig = olForm.elements["counciltax_fig"].valueAsNumber;
 
     calcTotal += counciltaxMhYr(counciltaxSelect, counciltaxFig);
 
-    alert("The monthly total is: " + parseFloat(calcTotal.toFixed(2)));
+    function testFunction() {
+        this.A = "goose";
+        this.B = "gander";
+    }
+
+    alert("The monthly total is: " + calcTotal.toFixed(2));
 }
 function getMortgageTotal(n, r, P) {
     
