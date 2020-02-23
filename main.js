@@ -14,7 +14,7 @@ function getFinalCalc() {
     const olForm = document.getElementById("calculation_form");
     let calcTotal = 0;
     const homeChoice = olForm.elements["home_select"].value;
-    
+
     if (homeChoice == "buy") {
         let mortgageYears = olForm.elements["mortgage_years"].valueAsNumber;
         let mortgageRate = olForm.elements["mortgage_rate"].valueAsNumber / 100 / 12;
@@ -35,11 +35,11 @@ function getFinalCalc() {
         this.A = "goose";
         this.B = "gander";
     }
-
     alert("The monthly total is: " + calcTotal.toFixed(2));
 }
+/*Geese*/
 function getMortgageTotal(n, r, P) {
-    
+
     let morgageTotal = P * ((r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1));
     return morgageTotal;
 }
