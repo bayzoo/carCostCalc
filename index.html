@@ -24,8 +24,8 @@
         <form name ="calculation" id="calculation_form" action="#">
           <div id="mortgage_rent">
             <div class="form_row">
-              <label class="" id="label_one" for="home_select">Rent or buy:</label>
-              <select class="input_field" id="home_select" name="calculation" onchange="mortgageOrRent(this.value)">
+              <label class="label_text" id="label_one" for="home_select">Rent or buy:</label>
+              <select class="input_field" id="home_select" name="calculation" >
                 <option value="" disabled selected>---select---</option>
                 <option value="rent">Rent</option>
                 <option value="buy">Buy</option>
@@ -34,21 +34,21 @@
             <div id="mortgage">
               <div class="form_row">
                 <label class="label_text" id="label_two" for="mortgage_years">Term (years):</label>
-                <input class="input_field" type="number" pattern="" name="calculation" id="mortgage_years" />
+                <input class="input_field event_one" type="number" min="0" name="calculation" id="mortgage_years" />
               </div>
               <div class="form_row">
                 <label class="label_text" id="label_three" for="mortgage_rate">Interest Rate:</label>
-                <input class="input_field" type="number" pattern="" name="calculation" id="mortgage_rate" />
+                <input class="input_field event_one" type="number" min="0" name="calculation" id="mortgage_rate" />
               </div>
               <div class="form_row">
                 <label class="label_text" id="label_four" for="mortgage_loan">Loan Amount:</label>
-                <input class="input_field" type="number" pattern="" name="calculation" id="mortgage_loan" />
+                <input class="input_field event_one" type="number" min="0" name="calculation" id="mortgage_loan" />
               </div>
             </div>
             <div id="rent">
               <div class="form_row">
                 <label class="label_text" id="label_five" for="rent_pm">Rent (per month):</label>
-                <input class="input_field" type="number" pattern="" name="calculation" id="rent_pm" />
+                <input class="input_field event_one" type="number" min="0" name="calculation" id="rent_pm" />
               </div>
             </div>
           </div>
@@ -56,7 +56,7 @@
             <div class="form_row">
               <label class="label_text" id="label_six" for="counciltax_fig counciltax_select">Council Tax:</label>
               <div id="counciltax_inputs">
-                <input class="input_field_ct_fig" type="number" pattern="" name="calculation" id="counciltax_fig">
+                <input class="input_field_ct_fig event_one" type="number" min="0" name="calculation" id="counciltax_fig">
                 <select class="input_field_ct_mtyr" id="counciltax_select" name="calculation">
                   <option value="month">Month</option>
                   <option value="year">Year</option>
@@ -65,9 +65,13 @@
             </div>
           </div>
           <div class="submit_button">
-            <input type="button" name="calculation" value="Submit" onclick="getFinalCalc();" />
+            <input id="button_click" type="button" name="calculation" value="Submit"/>
           </div>
       </form>
+      <div id="monthly_result">
+        <p>You're monthly total is:</p>
+        <p id="calc_output"></p>
+      </div>
     </div>
 
   </main>

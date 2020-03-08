@@ -1,11 +1,25 @@
+var x = document.querySelectorAll(".event_one");
+document.querySelectorAll(".event_one").forEach(item => {
+    item.addEventListener("input", funA => {
+        const x = item.valueAsNumber;
+        if (isNaN(x) === true) {
+            item.value = "";
+        } else if (isNaN(x) === false && x < 0) {
+            item.value = "";
+        }
+    });
+});
+document.getElementById("home_select").addEventListener("change", funB => mortgageOrRent());
+document.getElementById("button_click").addEventListener("click", funC => getFinalCalc());
+
 function mortgageOrRent() {
     const homeChoice = document.getElementById("home_select").value;
 
-    if (homeChoice == "buy") {
+    if (homeChoice === "buy") {
         document.getElementById("rent").style.display = "none";
         document.getElementById("mortgage").style.display = "block";
         return;
-    } else if (homeChoice == "rent") {
+    } else if (homeChoice === "rent") {
         document.getElementById("mortgage").style.display = "none";
         document.getElementById("rent").style.display = "block";
     }
@@ -15,15 +29,18 @@ function getFinalCalc() {
     let calcTotal = 0;
     const homeChoice = olForm.elements["home_select"].value;
 
-    if (homeChoice == "buy") {
-        let mortgageYears = olForm.elements["mortgage_years"].valueAsNumber;
-        let mortgageRate = olForm.elements["mortgage_rate"].valueAsNumber / 100 / 12;
-        let mortgageLoan = olForm.elements["mortgage_loan"].valueAsNumber;
-        let mortgageMonths = mortgageYears * 12;
+    if (homeChoice === "buy") {
 
-        calcTotal += getMortgageTotal(mortgageMonths, mortgageRate, mortgageLoan);
+        function formObject() {
+            this.mortgageRate = olForm.elements["mortgage_rate"].valueAsNumber / 100 / 12;
+            this.mortgageLoan = olForm.elements["mortgage_loan"].valueAsNumber;
+            this.mortgageMonths = olForm.elements["mortgage_years"].valueAsNumber * 12;
+        }
+        const a = new formObject();
 
-    } else if (homeChoice == "rent") {
+        calcTotal += getMortgageTotal(a.mortgageMonths, a.mortgageRate, a.mortgageLoan);
+
+    } else if (homeChoice === "rent") {
         calcTotal += olForm.elements["rent_pm"].valueAsNumber;
     }
     const counciltaxSelect = olForm.elements["counciltax_select"].value;
@@ -31,21 +48,23 @@ function getFinalCalc() {
 
     calcTotal += counciltaxMhYr(counciltaxSelect, counciltaxFig);
 
-    function testFunction() {
-        this.A = "goose";
-        this.B = "gander";
-    }
-    alert("The monthly total is: " + calcTotal.toFixed(2));
+    document.getElementById("calc_output").innerHTML = calcTotal.toFixed(2);
+
+    showMultipleIDs(["monthly_result", "calc_output"]);
 }
-/*Geese*/
 function getMortgageTotal(n, r, P) {
 
     let morgageTotal = P * ((r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1));
     return morgageTotal;
 }
 function counciltaxMhYr(counciltaxSelect, counciltaxFig) {
-    if (counciltaxSelect == "year") {
+    if (counciltaxSelect === "year") {
         return counciltaxFig / 12;
     }
     return counciltaxFig;
+}
+function showMultipleIDs(arrayOne) {
+    for(i = 0; i < arrayOne.length; i++) {
+        document.getElementById(arrayOne[i]).style.display = "block";
+    }
 }

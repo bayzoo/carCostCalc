@@ -110,32 +110,42 @@ main {
   flex-direction: column;
 }
 .form_row {
+  height: 2rem;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin: 1rem;
+  margin-bottom: 2rem;
 }
-#mortgage {
-  border: solid 0.1rem black;
-  display: none;
+#mortgage_rent, #counciltax {
+  border: solid 0.2rem black;
+  margin-bottom: 2rem;
+  padding: 2rem 1rem 0 1rem;
 }
-#rent {
-  border: solid 0.1rem black;
+#mortgage, #rent {
   display: none;
 }
 .input_field {
   width: 40%;
+  height: 100%;
 }
 #counciltax_inputs {
   width: 40%;
   display: flex;
   justify-content: space-between;
 }
-.input_field_ct_fig {
+.input_field_ct_fig, .input_field_ct_mtyr {
+  height: 100%;
   width: 47.5%;
 }
-.input_field_ct_mtyr {
-  width: 47.5%;
+#monthly_result {
+  display: none;
+}
+#calc_output {
+  font-size: 2rem;
+  font-weight: bold;
+  display: none;
+  margin: 1rem 0;
+  text-align: center;
 }
 .submit_button {
   font-size: 2rem;
