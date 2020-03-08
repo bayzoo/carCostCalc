@@ -1,4 +1,3 @@
-var x = document.querySelectorAll(".event_one");
 document.querySelectorAll(".event_one").forEach(item => {
     item.addEventListener("input", funA => {
         const x = item.valueAsNumber;
@@ -28,25 +27,31 @@ function getFinalCalc() {
     const olForm = document.getElementById("calculation_form");
     let calcTotal = 0;
     const homeChoice = olForm.elements["home_select"].value;
+    let inputs = {
+    };
 
     if (homeChoice === "buy") {
+        inputs.mortgageRate = olForm.elements["mortgage_rate"].valueAsNumber / 100 / 12;
+        inputs.mortgageLoan = olForm.elements["mortgage_loan"].valueAsNumber;
+        inputs.mortgageMonths = olForm.elements["mortgage_years"].valueAsNumber * 12;
 
-        function formObject() {
-            this.mortgageRate = olForm.elements["mortgage_rate"].valueAsNumber / 100 / 12;
-            this.mortgageLoan = olForm.elements["mortgage_loan"].valueAsNumber;
-            this.mortgageMonths = olForm.elements["mortgage_years"].valueAsNumber * 12;
-        }
-        const a = new formObject();
-
-        calcTotal += getMortgageTotal(a.mortgageMonths, a.mortgageRate, a.mortgageLoan);
+        calcTotal += getMortgageTotal(inputs.mortgageMonths, inputs.mortgageRate, inputs.mortgageLoan);
 
     } else if (homeChoice === "rent") {
-        calcTotal += olForm.elements["rent_pm"].valueAsNumber;
+        inputs.rent = olForm.elements["rent_pm"].valueAsNumber;
+        calcTotal += inputs.rent;
     }
+    
     const counciltaxSelect = olForm.elements["counciltax_select"].value;
     const counciltaxFig = olForm.elements["counciltax_fig"].valueAsNumber;
 
-    calcTotal += counciltaxMhYr(counciltaxSelect, counciltaxFig);
+    inputs.counciltax = counciltaxMhYr(counciltaxSelect, counciltaxFig);
+    calcTotal += inputs.counciltax;
+
+    if (checkInputs(inputs) > 0) {
+        alert("Please ensure all fields have values");
+        return;
+    };
 
     document.getElementById("calc_output").innerHTML = calcTotal.toFixed(2);
 
@@ -67,4 +72,15 @@ function showMultipleIDs(arrayOne) {
     for(i = 0; i < arrayOne.length; i++) {
         document.getElementById(arrayOne[i]).style.display = "block";
     }
+}
+function checkInputs(inputs) {
+    const inputValues = Object.values(inputs);
+    let y = 0;
+
+    inputValues.forEach(item => {
+        if (isNaN(item) === true) {
+            y += 1;
+        };
+    });
+    return y;
 }
