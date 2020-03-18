@@ -41,7 +41,7 @@ function getFinalCalc() {
         inputs.rent = olForm.elements["rent_pm"].valueAsNumber;
         calcTotal += inputs.rent;
     }
-    
+
     const counciltaxSelect = olForm.elements["counciltax_select"].value;
     const counciltaxFig = olForm.elements["counciltax_fig"].valueAsNumber;
 
@@ -84,3 +84,4 @@ function checkInputs(inputs) {
     });
     return y;
 }
+/*Test*/
